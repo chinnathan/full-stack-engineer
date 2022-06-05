@@ -1,0 +1,39 @@
+{
+  "name": "full-stack-engineer-challenge",
+  "description": "Bootstrap and playground of becoming full stack developer",
+  "version": "0.1.0",
+  "author": "Pychick <chinnathan@gmail.com> (https://github.com/chinnathan)",
+  "license": "UNLICENSED",
+  "private": true,
+  "workspaces": [
+    "api/",
+    "dashboard/"
+  ],
+  "scripts": {
+    "start": "turbo run start",
+    "start-par": "turbo run start --parallel",
+    "start:api": "turbo run start --filter=\"api\"",
+    "start:dashboard": "turbo run start --filter=\"dashboard\"",
+    "build": "turbo run build",
+    "build:api": "turbo run build --filter=\"api*\"",
+    "build:dashboard": "turbo run build --filter=\"dashboard\"",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^16.1.0",
+    "@commitlint/config-conventional": "^16.0.0",
+    "eslint": "^8.13.0",
+    "lint-staged": "^12.3.3",
+    "prettier": "latest",
+    "turbo": "latest",
+    "webpack": "latest"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "packageManager": "yarn@1.22.18"
+}
