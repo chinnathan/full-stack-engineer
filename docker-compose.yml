@@ -1,0 +1,29 @@
+version: "3.6"
+services:
+  mongodb:
+    image: mongo:5
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
+    volumes:
+      - ./docker/mongodb/data:/data/db
+  api:
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    environment:
+      - MONGO_URI=mongodb://mongodb/playground-db
+    ports:
+      - 3001:3001
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+  dashboard:
+    build:
+      context: .
+      dockerfile: ./dashboard/Dockerfile
+    ports:
+      - 3000:3000
