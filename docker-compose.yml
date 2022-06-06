@@ -1,26 +1,28 @@
 version: "3.6"
 services:
-  mongodb:
-    image: mongo:5
+  postgres:
+    image: postgres:13
+    restart: always
     ports:
-      - 27017:27017
+      - 5432:5432
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=mongo
-      - MONGO_INITDB_ROOT_PASSWORD=mongo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=test
     volumes:
-      - ./docker/mongodb/data:/data/db
+      - ./docker/pgdata:/var/lib/postgresql/data
+    command: postgres -c 'max_connections=1000'
   api:
     build:
       context: .
       dockerfile: ./api/Dockerfile
-    environment:
-      - MONGO_URI=mongodb://mongodb/playground-db
     ports:
       - 3001:3001
     links:
-      - mongodb
+      - postgres
+      - postgres:pg.local
     depends_on:
-      - mongodb
+      - postgres
   dashboard:
     build:
       context: .

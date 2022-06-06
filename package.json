@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "turbo run start",
-    "start-par": "turbo run start --parallel",
+    "start:par": "turbo run start --parallel",
     "start:api": "turbo run start --filter=\"api\"",
     "start:dashboard": "turbo run start --filter=\"dashboard\"",
     "build": "turbo run build",
