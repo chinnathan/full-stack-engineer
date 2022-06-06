@@ -2,7 +2,7 @@
 
 Bootstrap and playground of becoming full stack developer, here's where you can learn ReactJs and NestJs written in TypeScript.
 
-### Structure
+## Structure
 
 There are both backend and frontend apps contained in this repository ([monorepo](https://monorepo.tools)), a directory of the backend app is api/ and the frontend app is dashboard/ respectively. Both of them are placed under the root directory.
 
@@ -13,7 +13,7 @@ We keep a docker-compose.yml under the root directory and place Dockerfile insid
 - `docker-compose.yml`: a docker-compose file is used to manage and expose all predefined container(s)
 - `turbo.json`: a turbo.json file is used throughout the monorepo, it defines andd consolidates the script commands of entire subrepo(s), consequently, it can leverage your tasks of lint, test, build, etc.
 
-### Utilities
+## Utilities
 
 This monorepo has some additional tools already setup for you:
 
@@ -50,11 +50,31 @@ yarn build
 To run/start all apps (in parallel), run the following command:
 
 ```
-yarn start-par
+yarn start:par
 or
 yarn start:api (start only api app)
 or
 yarn start:dashboard (start only dashboard app)
+```
+
+To start api app (in dev mode), run the following command:
+
+```
+yarn workspace api start:dev
+```
+
+## Test
+
+To test api app (in watch mode), run the following command:
+
+```
+yarn workspace api test:watch
+```
+
+To see coverage stat of backend code, run the following command:
+
+```
+yarn workspace api test:cov
 ```
 
 ## Useful Links
