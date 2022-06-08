@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
   VersionColumn,
 } from 'typeorm';
-import { SSRStatus } from '../../constant/status';
+import { SSRStatus } from '../../constant';
 
 @Entity()
 export class Result {
