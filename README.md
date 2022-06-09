@@ -51,9 +51,9 @@ To run/start all apps (in parallel), run the following command:
 
 ```
 yarn start:par
-or
+//or
 yarn start:api (start only api app)
-or
+//or
 yarn start:dashboard (start only dashboard app)
 ```
 
