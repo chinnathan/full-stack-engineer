@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container, Grid, Icon, Label, Menu } from "semantic-ui-react";
 import { GenericTable } from "./component/GenericTable";
+import { FormContainer } from "./component/FormContainer";
 import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 
@@ -117,7 +118,7 @@ export const App = (props: Props) => {
         </Grid.Row>
         <Grid.Row>
           <Grid.Column computer={16}>
-            {activeItem === "additem" && <Container>Add Container</Container>}
+            {activeItem === "additem" && <FormContainer />}
             {activeItem === "listitem" && <GenericTable />}
           </Grid.Column>
         </Grid.Row>

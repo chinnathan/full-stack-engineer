@@ -1,9 +1,13 @@
 import dayjs from "dayjs";
+import _ from "lodash";
 import { useState, useEffect } from "react";
-import { Container, Icon, Label, Table } from "semantic-ui-react";
+import { Container, Divider, Icon, Label, Table } from "semantic-ui-react";
 import { callAPINoAuth as callAPI } from "src/utils/rest-api";
 import { SSRStatus } from "../constant";
 import { FindingsModal } from "./FindingsModal";
+
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
 
 type T = Record<string, any>;
 
@@ -15,7 +19,7 @@ export const GenericTable = () => {
   useEffect(() => {
     callAPI("GET", "results")
       .then((res) => {
-        setItemList(res);
+        setItemList(_.orderBy(res, ["id"], ["desc"]));
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +54,7 @@ export const GenericTable = () => {
           <Table.Cell>{e.repositoryName}</Table.Cell>
           <Table.Cell>{e.status}</Table.Cell>
           <Table.Cell>
-            <Icon name="search" color="red" />
+            <Icon name="search" color="grey" />
             {e.findings.map((i: T) => {
               return (
                 <Label key={i.ruleId}>
@@ -59,7 +63,7 @@ export const GenericTable = () => {
               );
             })}
           </Table.Cell>
-          <Table.Cell>{dayjs(dt).format("YYYY-MM-DD HH:mm:ss")}</Table.Cell>
+          <Table.Cell>{dayjs.utc(dt).format("YYYY-MM-DD HH:mm:ss")}</Table.Cell>
         </Table.Row>
       );
     });
@@ -79,7 +83,12 @@ export const GenericTable = () => {
 
         <Table.Body>{renderRows()}</Table.Body>
       </Table>
-      <FindingsModal data={item} showModal={showModal} handleClose={handleClose} />
+      <FindingsModal
+        data={item}
+        showModal={showModal}
+        handleClose={handleClose}
+      />
+      <Divider />
     </Container>
   );
 };
