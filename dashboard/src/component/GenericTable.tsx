@@ -27,7 +27,6 @@ export const GenericTable = () => {
   }, []);
 
   function handleFindings(e: T) {
-    // console.log("handleFindings", e);
     setItem(e);
     setShowModal(true);
   }

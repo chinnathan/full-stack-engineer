@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useState, useEffect, SyntheticEvent } from "react";
+import { useState, useEffect, SyntheticEvent, MouseEvent } from "react";
 import {
   Button,
   Container,
@@ -57,6 +57,8 @@ const template = `{
   "finishedAt": "2022-06-21T00:00:00.000Z"
 }`;
 
+type T = Record<string, any>;
+
 export const FormContainer = () => {
   const [jsonText, setJsonText] = useState<string>("");
 
@@ -64,7 +66,7 @@ export const FormContainer = () => {
     setJsonText(template);
   }, []);
 
-  function handleChange(event: SyntheticEvent, data: any) {
+  function handleChange(event: SyntheticEvent, data: T) {
     setJsonText(data.value);
   }
 
@@ -114,7 +116,7 @@ export const FormContainer = () => {
       <Form>
         <TextArea
           rows={30}
-          placeholder="Modify the value on this JSON template, then perform submit"
+          placeholder="Modify the value on this JSON template and then perform adding."
           value={jsonText}
           onChange={(event: SyntheticEvent, data: any) =>
             handleChange(event, data)
@@ -125,7 +127,11 @@ export const FormContainer = () => {
       <Grid container>
         <GridRow>
           <GridColumn computer={5}>
-            <Button onClick={() => handleLoadTemplate()}>Load Template</Button>
+            <Button
+              onClick={(e: MouseEvent<HTMLElement>) => handleLoadTemplate()}
+            >
+              Load Template
+            </Button>
             (Reset to Default)
           </GridColumn>
           <GridColumn computer={6} textAlign="center" verticalAlign="middle">
@@ -134,7 +140,7 @@ export const FormContainer = () => {
           <GridColumn computer={5} textAlign="right">
             (New Result)
             <span style={{ paddingLeft: "6px" }}></span>
-            <Button onClick={() => handleAdd()}>
+            <Button onClick={(e: MouseEvent<HTMLElement>) => handleAdd()}>
               <span style={{ paddingLeft: "20px" }} />
               ADD
               <span style={{ paddingLeft: "20px" }} />

@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { Button, Label, Modal } from "semantic-ui-react";
 import { FindingsTable } from "./FindingsTable";
 
@@ -13,7 +14,7 @@ export const FindingsModal = (props: Props) => {
     <Modal
       closeIcon
       size="large"
-      onClose={() => props.handleClose()}
+      onClose={(e: MouseEvent<HTMLElement>) => props.handleClose()}
       open={props.showModal}
     >
       <Modal.Header>
@@ -29,7 +30,7 @@ export const FindingsModal = (props: Props) => {
         <FindingsTable {...props.data} />
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={() => props.handleClose()}>Close</Button>
+        <Button onClick={(e: MouseEvent<HTMLElement>) => props.handleClose()}>Close</Button>
       </Modal.Actions>
     </Modal>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { Container, Grid, Icon, Label, Menu } from "semantic-ui-react";
 import { GenericTable } from "./component/GenericTable";
 import { FormContainer } from "./component/FormContainer";
@@ -48,7 +48,7 @@ export const App = (props: Props) => {
               <Menu.Item
                 name="additem"
                 active={activeItem === "additem"}
-                onClick={() => handleItemClick("additem")}
+                onClick={(e: MouseEvent<HTMLElement>) => handleItemClick("additem")}
               >
                 <span
                   style={{
@@ -71,7 +71,7 @@ export const App = (props: Props) => {
               <Menu.Item
                 name="listitem"
                 active={activeItem === "listitem"}
-                onClick={() => handleItemClick("listitem")}
+                onClick={(e: MouseEvent<HTMLElement>) => handleItemClick("listitem")}
               >
                 <span
                   style={{
@@ -94,7 +94,7 @@ export const App = (props: Props) => {
               <Menu.Item
                 name="info"
                 active={activeItem === "info"}
-                onClick={() => handleItemClick("info")}
+                onClick={(e: MouseEvent<HTMLElement>) => handleItemClick("info")}
               >
                 <span
                   style={{
